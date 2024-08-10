@@ -9,9 +9,9 @@
         <br>
         Password: <input name="password" type="password" required>
         <br>
-        <input type="submit" value="Sign in">
+        <input class="submit-btn" type="submit" value="Sign in">
     </form>
-    @error('email', 'password')
+    @error('email')
         <x-alert type="error" :message="$message" />
     @enderror
 @endsection

@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use App\Services\AuthService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(AuthService::class, function ($app) {
+        $this->app->singleton(AuthService::class, function (Application $app) {
             return new AuthService();
         });
     }
@@ -20,8 +23,10 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(AuthService $authService): void
     {
-        //
+        View::composer('*', function ($view) use($authService) {
+            $view->with('userFullName', $authService->getUserFullName());
+        });
     }
 }

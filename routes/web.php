@@ -15,13 +15,14 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::redirect('/', '/dashboard');
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::controller(ClientController::class)->group(function () {
-        Route::get('/clients', 'show')->name('clients');
-        Route::get('/clients/{id}/edit', 'editPage');
-        Route::post('/clients/{id}/edit', 'edit');
-        Route::post('/clients/{id}/delete', 'delete');
+    Route::controller(ClientController::class)->name('clients.')->group(function () {
+        Route::get('/clients', 'showAll')->name('all');
+        Route::get('/clients/{client}', 'view')->name('view');
+        Route::get('/clients/{client}/update', 'updatePage')->name('update');
+        Route::post('/clients/{client}/update', 'update');
+        Route::post('/clients/{client}/delete', 'delete')->name('delete');
     });
     
     Route::post('/send_code/{method}', [SendCodeConroller::class, 'sendCode']);

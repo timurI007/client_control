@@ -22,4 +22,10 @@ class AuthService
         $request->session()->invalidate();
         $request->session()->regenerateToken();
     }
+
+    public function getUserFullName(): ?string
+    {
+        $user = Auth::user();
+        return $user ? $user->name . ' ' . $user->lastname : null;
+    }
 }

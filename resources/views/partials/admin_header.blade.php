@@ -1,5 +1,5 @@
 <header>
-    Current User: <span class="bold">{{ $currentUserFullName }}</span>
+    Current User: <span class="bold">{{ $userFullName }}</span>
     <nav>
         <ul>
             <li>
@@ -8,8 +8,13 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('clients') }}">
+                <a href="{{ route('clients.all') }}">
                     Clients
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('logout') }}">
+                    Logout
                 </a>
             </li>
         </ul>
