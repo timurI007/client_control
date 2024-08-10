@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-    <form method="post" action="/login">
+    <form method="post" action="{{ route('login') }}">
         @csrf
         Email: <input name="email" type="email" required value="{{ old('email') }}">
         <br>
@@ -12,6 +12,6 @@
         <input type="submit" value="Sign in">
     </form>
     @error('email', 'password')
-        <div class="danger">{{ $message }}</div>
+        <x-alert type="error" :message="$message" />
     @enderror
 @endsection

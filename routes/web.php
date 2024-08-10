@@ -14,14 +14,14 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('/', '/dashboard');
-    Route::get('/dashboard', [DashboardController::class, 'show']);
+    Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::controller(ClientController::class)->group(function () {
-        Route::get('/client/{id}', 'view');
-        Route::get('/client/{id}/edit', 'editPage');
-        Route::post('/client/{id}/edit', 'edit');
-        Route::post('/client/{id}/delete', 'delete');
+        Route::get('/clients', 'show')->name('clients');
+        Route::get('/clients/{id}/edit', 'editPage');
+        Route::post('/clients/{id}/edit', 'edit');
+        Route::post('/clients/{id}/delete', 'delete');
     });
     
     Route::post('/send_code/{method}', [SendCodeConroller::class, 'sendCode']);
