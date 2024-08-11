@@ -26,9 +26,9 @@
                     <td>{{ $client->phone }}</td>
                     <td>{{ $client->birthdate }}</td>
                     <td>
-                        <a href="{{ route('clients.view', ['client' => $client->id]) }}">view</a>
+                        <a href="{{ route('clients.view', ['client' => $client]) }}">view</a>
                         ||
-                        <a href="{{ route('clients.update', ['client' => $client->id]) }}">update</a>
+                        <a href="{{ route('clients.update', ['client' => $client]) }}">update</a>
                     </td>
                 </tr>
             @endforeach

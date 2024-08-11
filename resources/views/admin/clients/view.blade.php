@@ -3,7 +3,7 @@
 @section('title', 'View ' . $client->name)
 
 @section('content')
-    <a href="{{ route('clients.update', ['client' => $client->id]) }}">Update</a>
+    <a href="{{ route('clients.update', ['client' => $client]) }}">Update</a>
     <p>
         <span class="bold">ID:</span> {{ $client->id }}
     </p>
@@ -28,4 +28,7 @@
     <p>
         <span class="bold">Created At:</span> {{ $client->created_at }}
     </p>
+    @if (session('success'))
+        <x-alert type="success" :message="session('success')" />
+    @endif
 @endsection
