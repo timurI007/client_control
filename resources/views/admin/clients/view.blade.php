@@ -3,7 +3,14 @@
 @section('title', 'View ' . $client->name)
 
 @section('content')
-    <a href="{{ route('clients.update', ['client' => $client]) }}">Update</a>
+    <ul>
+        <li>
+            <a href="{{ route('clients.update', ['client' => $client]) }}">Update</a>
+        </li>
+        <li>
+            <a href="{{ route('clients.delete', ['client' => $client]) }}">Delete</a>
+        </li>
+    </ul>
     <p>
         <span class="bold">ID:</span> {{ $client->id }}
     </p>

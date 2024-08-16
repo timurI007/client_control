@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientUpdateRequest extends FormRequest
+class ClientDeleteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,13 +21,7 @@ class ClientUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $clientId = $this->route('client')->id;
         return [
-            'name' => 'required|string|max:100|min:2',
-            'lastname' => 'required|string|max:100|min:2',
-            'email' => 'required|string|email|max:255|unique:clients,email,' . $clientId,
-            'phone' => 'required|string|max:25|min:5|unique:clients,phone,' . $clientId,
-            'birthdate' => 'required|date|before:2024-01-01',
             'confirmation_code' => 'required|numeric'
         ];
     }

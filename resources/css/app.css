@@ -1,0 +1,44 @@
+ul{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #0000ff;
+}
+
+input[type=submit] {
+    cursor: pointer;
+}
+
+.disabled-link {
+    color: #0000b0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.alert {
+    font-size: 1.1rem;
+}
+
+.alert-error {
+    color: #ff0000;
+}
+
+.alert-success {
+    color: #008000;
+}

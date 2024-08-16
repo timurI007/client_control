@@ -2,6 +2,10 @@
 
 @section('title', 'Update ' . $client->name)
 
+@section('supportStyles')
+    @livewireStyles
+@endsection
+
 @section('content')
     <h3>Updating client <span class="underline">{{ $client->name }}</span></h3>
     <form action="{{ route('clients.update', ['client' => $client]) }}" method="post">
@@ -21,20 +25,14 @@
         <label for="birthdate">Birthdate:</label>
         <input id="birthdate" name="birthdate" type="date"
             value="{{ old('birthdate', date('Y-m-d', strtotime($client->birthdate))) }}" />
-        <fieldset>
-            <legend>Select a method to send confirmation code:</legend>
-            <label for="sms">SMS</label>
-            <input type="radio" id="sms" name="method" value="sms" checked />
-            <br>
-            <label for="email">Email</label>
-            <input type="radio" id="email" name="method" value="email" />
-            <br>
-            <label for="telegram">Telegram</label>
-            <input type="radio" id="telegram" name="method" value="telegram" />
-        </fieldset>
         <br>
-        <input class="submit-btn" type="submit" value="UPDATE">
+        <label for="confirmation_code">Confirmation code:</label>
+        <input id="confirmation_code" name="confirmation_code" placeholder="Enter confirmation code" type="number" />
+        <br>
+        <input type="submit" value="Update">
     </form>
+    <br>
+    <livewire:send-code />
     @if ($errors->any())
         <ul>
             @foreach ($errors->all() as $error)
@@ -44,4 +42,8 @@
             @endforeach
         </ul>
     @endif
+@endsection
+
+@section('supportScripts')
+    @livewireScripts
 @endsection

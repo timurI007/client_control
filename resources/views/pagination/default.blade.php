@@ -11,11 +11,11 @@
         </p>
     </div>
     <div>
-        <ul class="pagination">
+        <ul>
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <li>
-                    <span>@lang('pagination.previous')</span>
+                    <span class="disabled-link">@lang('pagination.previous')</span>
                 </li>
             @else
                 <li>
@@ -55,7 +55,7 @@
                 </li>
             @else
                 <li>
-                    <span>@lang('pagination.next')</span>
+                    <span class="disabled-link">@lang('pagination.next')</span>
                 </li>
             @endif
         </ul>

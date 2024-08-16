@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SendCodeConroller;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function () {
@@ -22,8 +21,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/clients/{client}', 'view')->name('view');
         Route::get('/clients/{client}/update', 'updatePage')->name('update');
         Route::post('/clients/{client}/update', 'update');
-        Route::post('/clients/{client}/delete', 'delete')->name('delete');
+        Route::get('/clients/{client}/delete', 'deletePage')->name('delete');
+        Route::post('/clients/{client}/delete', 'delete');
     });
-    
-    Route::post('/send_code/{method}', [SendCodeConroller::class, 'sendCode']);
 });

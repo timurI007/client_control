@@ -1,5 +1,5 @@
 <header>
-    Current User: <span class="bold">{{ $userFullName }}</span>
+    Current User: <span class="bold underline">{{ $userFullName }}</span>
     <nav>
         <ul>
             <li>
