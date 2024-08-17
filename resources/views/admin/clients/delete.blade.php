@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Update ' . $client->name)
+@section('title', 'Delete ' . $client->name)
 
 @section('supportStyles')
     @livewireStyles
