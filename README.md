@@ -20,6 +20,8 @@ Realisation of a test task for a Middle+ PHP developer. Task is this:
 - php artisan migrate --seed
 - php artisan serve
 
-## Usage of confirmation code
+## Usage
+
+To login, just take the email from the table users and provide the password "password".
 
 To be able to confirm the sent code, you need to change .env APP_DEBUG=true and check tab Messages in Debugbar.

@@ -16,12 +16,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::controller(ClientController::class)->name('clients.')->group(function () {
-        Route::get('/clients', 'showAll')->name('all');
-        Route::get('/clients/{client}', 'view')->name('view');
-        Route::get('/clients/{client}/update', 'updatePage')->name('update');
-        Route::post('/clients/{client}/update', 'update');
-        Route::get('/clients/{client}/delete', 'deletePage')->name('delete');
-        Route::post('/clients/{client}/delete', 'delete');
-    });
+    Route::controller(ClientController::class)
+        ->name('clients.')
+        ->prefix('clients')
+        ->group(function () {
+            Route::get('/', 'showAll')->name('all');
+            Route::get('/{client}', 'view')->name('view');
+            Route::get('/{client}/update', 'updatePage')->name('update');
+            Route::post('/{client}/update', 'update');
+            Route::get('/{client}/delete', 'deletePage')->name('delete');
+            Route::post('/{client}/delete', 'delete');
+        }
+    );
 });
