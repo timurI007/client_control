@@ -9,7 +9,7 @@
     @yield('supportStyles')
 </head>
 <body>
-    @include('partials.admin_header')
+    <x-admin-header />
 
     <div class="container">
         <div>

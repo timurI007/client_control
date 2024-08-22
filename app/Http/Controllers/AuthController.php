@@ -2,26 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
-use App\Services\AuthService;
+use App\Http\Requests\LogoutRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
-    public function __construct(
-        protected AuthService $authService
-    ) {}
-
     public function loginPage(): View
     {
         return view('auth.login');
     }
 
-    public function login(LoginRequest $request): RedirectResponse
+    public function login(LoginRequest $loginRequest): RedirectResponse
     {
-        if ($this->authService->login($request, $request->validated())) {
+        if ($loginRequest->login($loginRequest->validated())) {
+            $loginRequest->session()->regenerate();
             return redirect()->intended('dashboard');
         }
 
@@ -30,9 +26,11 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(Request $request): RedirectResponse
+    public function logout(LogoutRequest $logoutRequest): RedirectResponse
     {
-        $this->authService->logout($request);
+        $logoutRequest->logout();
+        $logoutRequest->session()->invalidate();
+        $logoutRequest->session()->regenerateToken();
         return redirect()->route('login');
     }
 }

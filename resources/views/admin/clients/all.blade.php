@@ -24,11 +24,11 @@
                     <td>{{ $client->lastname }}</td>
                     <td>{{ $client->email }}</td>
                     <td>{{ $client->phone }}</td>
-                    <td>{{ $client->birthdate }}</td>
+                    <td>{{ $client->birthdateFormatted }}</td>
                     <td>
-                        <a href="{{ route('clients.view', ['client' => $client]) }}">view</a>
+                        <a href="{{ route('clients.view', ['id' => $client->id]) }}">view</a>
                         ||
-                        <a href="{{ route('clients.update', ['client' => $client]) }}">update</a>
+                        <a href="{{ route('clients.update', ['id' => $client->id]) }}">update</a>
                     </td>
                 </tr>
             @endforeach

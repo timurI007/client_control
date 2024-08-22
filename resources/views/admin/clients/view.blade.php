@@ -5,10 +5,10 @@
 @section('content')
     <ul>
         <li>
-            <a href="{{ route('clients.update', ['client' => $client]) }}">Update</a>
+            <a href="{{ route('clients.update', ['id' => $client->id]) }}">Update</a>
         </li>
         <li>
-            <a href="{{ route('clients.delete', ['client' => $client]) }}">Delete</a>
+            <a href="{{ route('clients.delete', ['id' => $client->id]) }}">Delete</a>
         </li>
     </ul>
     <p>
@@ -27,7 +27,7 @@
         <span class="bold">Phone:</span> {{ $client->phone }}
     </p>
     <p>
-        <span class="bold">Birthdate:</span> {{ $client->birthdate }}
+        <span class="bold">Birthdate:</span> {{ $client->birthdateFormatted }}
     </p>
     <p>
         <span class="bold">Updated At:</span> {{ $client->updated_at }}

@@ -8,7 +8,7 @@
 
 @section('content')
     <h3>Deleting client <span class="underline">{{ $client->name }}</span></h3>
-    <form action="{{ route('clients.delete', ['client' => $client]) }}" method="post">
+    <form action="{{ route('clients.delete', ['id' => $client->id]) }}" method="post">
         @csrf
         <label for="confirmation_code">Confirmation code:</label>
         <input id="confirmation_code" name="confirmation_code" placeholder="Enter confirmation code" type="number" />

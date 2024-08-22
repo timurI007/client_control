@@ -22,10 +22,10 @@ class Client extends Model
         'birthdate' => 'date'
     ];
 
-    protected function birthdate(): Attribute
+    protected function birthdateFormatted(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => date('d.m.Y', strtotime($value)),
+            get: fn () => $this->birthdate->format('d.m.Y'),
         );
     }
 }

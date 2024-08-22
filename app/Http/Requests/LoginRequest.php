@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LoginRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return !Auth::check();
     }
 
     /**
@@ -25,5 +26,10 @@ class LoginRequest extends FormRequest
             'email' => 'required|email',
             'password' => 'required'
         ];
+    }
+
+    public function login(array $credentials): bool
+    {
+        return Auth::attempt($credentials);
     }
 }

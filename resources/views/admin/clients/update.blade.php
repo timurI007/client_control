@@ -8,7 +8,7 @@
 
 @section('content')
     <h3>Updating client <span class="underline">{{ $client->name }}</span></h3>
-    <form action="{{ route('clients.update', ['client' => $client]) }}" method="post">
+    <form action="{{ route('clients.update', ['id' => $client->id]) }}" method="post">
         @csrf
         <label for="name">Name:</label>
         <input id="name" name="name" type="text" value="{{ old('name', $client->name) }}" />
@@ -23,8 +23,8 @@
         <input id="phone" name="phone" type="text" value="{{ old('phone', $client->phone) }}" />
         <br>
         <label for="birthdate">Birthdate:</label>
-        <input id="birthdate" name="birthdate" type="date"
-            value="{{ old('birthdate', date('Y-m-d', strtotime($client->birthdate))) }}" />
+        <input id="birthdate" name="birthdate" type="datetime"
+            value="{{ old('birthdate', $client->birthdate) }}" />
         <br>
         <label for="confirmation_code">Confirmation code:</label>
         <input id="confirmation_code" name="confirmation_code" placeholder="Enter confirmation code" type="number" />

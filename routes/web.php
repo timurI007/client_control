@@ -21,11 +21,11 @@ Route::middleware(['auth'])->group(function () {
         ->prefix('clients')
         ->group(function () {
             Route::get('/', 'showAll')->name('all');
-            Route::get('/{client}', 'view')->name('view');
-            Route::get('/{client}/update', 'updatePage')->name('update');
-            Route::post('/{client}/update', 'update');
-            Route::get('/{client}/delete', 'deletePage')->name('delete');
-            Route::post('/{client}/delete', 'delete');
+            Route::get('/{id}', 'view')->name('view');
+            Route::get('/{id}/update', 'updatePage')->name('update');
+            Route::post('/{id}/update', 'update');
+            Route::get('/{id}/delete', 'deletePage')->name('delete');
+            Route::post('/{id}/delete', 'delete');
         }
     );
 });

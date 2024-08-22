@@ -13,33 +13,41 @@ class ClientController extends Controller
 {
     public function showAll(): View
     {
+        $clients = Client::select('id', 'name', 'lastname', 'email', 'phone', 'birthdate')->paginate(25);
         return view('admin.clients.all', [
-            'clients' => Client::paginate(25)
+            'clients' => $clients
         ]);
     }
 
-    public function view(Client $client): View
+    public function view(int $id): View
     {
+        $client = Client::where('id', $id)->firstOrFail();
         return view('admin.clients.view', [
             'client' => $client
         ]);
     }
 
-    public function updatePage(Client $client): View
+    public function updatePage(int $id): View
     {
+        $client = Client::select('id', 'name', 'lastname', 'email', 'phone', 'birthdate')
+            ->where('id', $id)
+            ->firstOrFail();
         return view('admin.clients.update', [
             'client' => $client
         ]);
     }
 
-    public function deletePage(Client $client): View
+    public function deletePage(int $id): View
     {
+        $client = Client::select('id', 'name')
+            ->where('id', $id)
+            ->firstOrFail();
         return view('admin.clients.delete', [
             'client' => $client
         ]);
     }
 
-    public function update(ClientUpdateRequest $request, Client $client, SendCodeServiceInterface $sendCodeService): RedirectResponse
+    public function update(ClientUpdateRequest $request, int $id, SendCodeServiceInterface $sendCodeService): RedirectResponse
     {
         if (!$sendCodeService->checkConfirmationCode($request->input('confirmation_code'))) {
             return back()->withErrors([
@@ -47,12 +55,13 @@ class ClientController extends Controller
             ]);
         }
 
+        $client = Client::select('id')->where('id', $id)->firstOrFail();
         $client->update($request->safe()->except(['confirmation_code']));
 
-        return redirect()->route('clients.view', ['client' => $client])->with('success', 'Client updated successfully.');
+        return redirect()->route('clients.view', ['id' => $id])->with('success', 'Client updated successfully.');
     }
 
-    public function delete(ClientDeleteRequest $request, Client $client, SendCodeServiceInterface $sendCodeService): RedirectResponse
+    public function delete(ClientDeleteRequest $request, int $id, SendCodeServiceInterface $sendCodeService): RedirectResponse
     {
         if (!$sendCodeService->checkConfirmationCode($request->input('confirmation_code'))) {
             return back()->withErrors([
@@ -60,6 +69,7 @@ class ClientController extends Controller
             ]);
         }
 
+        $client = Client::select('id')->where('id', $id)->firstOrFail();
         $client->delete();
 
         return redirect()->route('clients.all');

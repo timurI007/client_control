@@ -15,18 +15,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(AuthService::class, function (Application $app) {
-            return new AuthService();
-        });
+        //
     }
 
     /**
      * Bootstrap any application services.
      */
-    public function boot(AuthService $authService): void
+    public function boot(): void
     {
-        View::composer('*', function ($view) use($authService) {
-            $view->with('userFullName', $authService->getUserFullName());
-        });
+        //
     }
 }

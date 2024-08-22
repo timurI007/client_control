@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class ClientDeleteRequest extends FormRequest
+class LogoutRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,11 @@ class ClientDeleteRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'confirmation_code' => ['required', 'numeric']
-        ];
+        return [];
+    }
+
+    public function logout(): void
+    {
+        Auth::logout();
     }
 }
