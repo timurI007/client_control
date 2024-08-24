@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\SendCode\Sms;
+namespace App\Services\MessageSenders;
 
-class SmsService implements SmsServiceInterface
+class SmsSenderService implements MessageSenderInterface
 {
     public function send(string $phone, string $message): bool
     {

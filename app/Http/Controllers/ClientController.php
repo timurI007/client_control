@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClientDeleteRequest;
 use App\Http\Requests\ClientUpdateRequest;
 use App\Models\Client;
-use App\Services\SendCode\SendCodeServiceInterface;
+use App\Services\SendConfirmationCode\ConfirmationCodeService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -35,9 +35,9 @@ class ClientController extends Controller
         return view('admin.clients.delete', compact('client'));
     }
 
-    public function update(ClientUpdateRequest $request, int $id, SendCodeServiceInterface $sendCodeService): RedirectResponse
+    public function update(ClientUpdateRequest $request, int $id, ConfirmationCodeService $confirmationCodeService): RedirectResponse
     {
-        if (!$sendCodeService->checkConfirmationCode($request->input('confirmation_code'))) {
+        if (!$confirmationCodeService->checkConfirmationCode($request->input('confirmation_code'))) {
             return back()->withErrors([
                 'confirmation_code' => 'Confirmation code is incorrect!'
             ]);
@@ -49,9 +49,9 @@ class ClientController extends Controller
         return redirect()->route('clients.view', ['id' => $id])->with('success', 'Client updated successfully.');
     }
 
-    public function delete(ClientDeleteRequest $request, int $id, SendCodeServiceInterface $sendCodeService): RedirectResponse
+    public function delete(ClientDeleteRequest $request, int $id, ConfirmationCodeService $confirmationCodeService): RedirectResponse
     {
-        if (!$sendCodeService->checkConfirmationCode($request->input('confirmation_code'))) {
+        if (!$confirmationCodeService->checkConfirmationCode($request->input('confirmation_code'))) {
             return back()->withErrors([
                 'confirmation_code' => 'Confirmation code is incorrect!'
             ]);

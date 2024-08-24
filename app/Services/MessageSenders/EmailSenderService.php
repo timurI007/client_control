@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\SendCode\Email;
+namespace App\Services\MessageSenders;
 
-class EmailService implements EmailServiceInterface
+class EmailSenderService implements MessageSenderInterface
 {
     public function send(string $email, string $message): bool
     {

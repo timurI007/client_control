@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\SendCode\Telegram;
+namespace App\Services\MessageSenders;
 
-class TelegramService implements TelegramServiceInterface
+class TelegramSenderService implements MessageSenderInterface
 {
     public function send(string $telegram, string $message): bool
     {

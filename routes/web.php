@@ -19,6 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ClientController::class)
         ->name('clients.')
         ->prefix('clients')
+        ->whereNumber('id')
         ->group(function () {
             Route::get('/', 'showAll')->name('all');
             Route::get('/{id}', 'view')->name('view');
