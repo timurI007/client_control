@@ -1,7 +1,7 @@
 
 ## About Project
 
-Realisation of a test task for a Middle+ PHP developer. Task is this:
+Realisation of a test task. Task is this:
 
 1) Authorization of employees in the system
 2) VIEW UPDATE DELETE operations with clients
